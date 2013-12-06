@@ -30,6 +30,7 @@ $(function () {
 			this.render();
 			this.listenTo(myModel, 'change', this.render);
 		},
+		//commentary: templates should turn data into HTML and that is it, other logic belongs elsewhere.
 		template: function (context) {
 			if (context.rannum > 900) {
 				return '<h2>Woah, that\'s a big number!</h2>';
