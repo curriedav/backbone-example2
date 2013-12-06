@@ -10,6 +10,7 @@ $(function () {
 		},
 		initialize: function () { //things that should happen when the view is initialized
 			this.render(); //renders the app view
+			this.listenTo(myModel, 'change', this.render);
 		},
 		template: function (context) {
 			return '<h1>' + context.rannum + '</h1>' + '<button class="pure-button pure-button-primary">Random</button>'
@@ -27,6 +28,7 @@ $(function () {
 		el: '#random-number-commentary',
 		initialize: function () {
 			this.render();
+			this.listenTo(myModel, 'change', this.render);
 		},
 		template: function (context) {
 			if (context.rannum > 900) {
@@ -43,7 +45,6 @@ $(function () {
 		}
 	});
 
-
 	var AppModel = Backbone.Model.extend({ //constructor fuction
 		initialize: function () {
 			this.newRandomNumber();
@@ -54,7 +55,6 @@ $(function () {
 
 			return number;
 		}
-
 	});
 
 	var myModel = new AppModel();
@@ -63,6 +63,6 @@ $(function () {
 	var comm = new CommView({model: myModel});
 	window.app = app; //allows access to the app from the console once we run this.
 
-	app.listenTo(myModel, 'change', app.render);
-	comm.listenTo(myModel, 'change', comm.render);
+	
+	
 });
